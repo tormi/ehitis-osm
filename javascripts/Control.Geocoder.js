@@ -22,8 +22,8 @@
 			collapsed: true,
 			expand: 'click',
 			position: 'topright',
-			placeholder: 'Search...',
-			errorMessage: 'Nothing found.'
+			placeholder: 'Otsi...',
+			errorMessage: 'Ei leitud.'
 		},
 
 		_callbackId: 0,
