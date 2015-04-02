@@ -19,7 +19,7 @@
 	L.Control.Geocoder = L.Control.extend({
 		options: {
 			showResultIcons: false,
-			collapsed: true,
+			collapsed: false,
 			expand: 'click',
 			position: 'topright',
 			placeholder: 'Otsi...',
