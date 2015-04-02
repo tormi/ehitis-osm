@@ -22,7 +22,7 @@
 			collapsed: false,
 			expand: 'click',
 			position: 'topright',
-			placeholder: 'Otsi...',
+			placeholder: 'Otsi aadressi ...',
 			errorMessage: 'Ei leitud.'
 		},
 
