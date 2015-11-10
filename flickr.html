@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title></title>
+  <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.css' rel='stylesheet' />
+  <style>
+    body { margin:0; padding:0; background-color: black; }
+    #map { position:absolute; top:0; bottom:0; width:100%; background-color: black; }
+
+    #city {
+        position: absolute;
+        top: 25px;
+        left: 55px;
+        font-size: 35px;
+        z-index: 100;
+    }
+    #next {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 20px;
+        z-index: 100;
+
+        border: 1px solid #000;
+        padding: 10px;
+        background: #FFF;
+    }
+  </style>
+</head>
+<body>
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
+<div id='map'>
+   <div id='city'>New York</div>
+   <div id='next'>Next</div>
+</div>
+<script type='text/javascript'>
+var cities = [
+  [40.7712655, -73.9433945, "New York"],
+  [51.5118, -0.1469, "London"],
+  [48.8587, 2.3281, "Paris"],
+  [37.7969715, -122.379659, "San Francisco"],
+  [52.5149, 13.3975, "Berlin"],
+  [41.3829, 2.1749, "Barcelona"],
+  [42.3551, -71.0846, "Boston"],
+  [38.8754, -77.0382, "Washington"],
+  [41.8674, 12.4588, "Rome"],
+  [43.6849425, -79.3738715, "Toronto"],
+  [41.892944, -87.719794, "Chicago"],
+  [49.2891435, -123.1103505, "Vancouver"],
+  [22.309394, 114.140201, "Hong Kong"],
+  [52.4124, 4.8673, "Amsterdam"],
+  [40.443754, -3.6668095, "Madrid"],
+  [50.0797, 14.4165, "Prague"],
+  [36.094753, -115.10952, "Las Vegas"],
+  [45.4516205, 12.3252865, "Venice"],
+  [59.3396, 18.0093, "Stockholm"],
+  [35.6750, 139.7550, "Tokyo"],
+  [47.4816, 19.0613, "Budapest"],
+  [55.6732, 12.5769, "Copenhagen"],
+  [53.3375, -6.2378, "Dublin"],
+  [47.6146, -122.3166, "Seattle"],
+  [55.9427625, -3.2522505, "Edinburgh"],
+  [48.1987, 16.3645, "Vienna"],
+  [-33.8917715, 151.181353, "Sydney"],
+  [39.9752965, -75.240409, "Philadelphia"],
+  [-37.847874, 144.967452, "Melbourne"],
+  [45.4958415, -73.6364645, "Montreal"],
+  [39.9422725, 116.3769825, "Beijing"],
+  [53.5776005, 9.904571, "Hamburg"],
+  [60.1723, 24.9345, "Helsinki"],
+  [45.5456875, -122.6676535, "Portland"],
+  [43.820166, 11.1942735, "Florence"],
+  [50.8663, 4.3825, "Bruxelles"],
+  [41.0417, 28.9552, "Istanbul"],
+  [45.4783, 9.1774, "Milan"],
+  [38.713409, -9.2113965, "Lisbon"],
+  [55.758721, 37.6379145, "Moscow"],
+  [48.1879, 11.5350, "Munich"],
+  [-34.5923915, -58.403341, "Buenos Aires"],
+  [1.3243415, 103.889865, "Singapore"],
+  [30.3039105, -97.7708515, "Austin"],
+  [37.9885995, 23.7115535, "Athens"],
+  [59.9001265, 30.3351665, "St. Petersburg"],
+  [34.0483, -118.3643, "Los Angeles"],
+  [34.9722165, 135.71351, "Kyoto"],
+  [29.9537295, -90.138337, "New Orleans"],
+  [55.8619, -4.3011, "Glasgow"]
+];
+
+var city = 0;
+
+L.mapbox.accessToken = 'pk.eyJ1IjoiZW5mIiwiYSI6IkNJek92bnMifQ.xn2_Uj9RkYTGRuCGg4DXZQ'
+var map = L.mapbox.map('map', 'enf.1a78aa2a')
+    .setView([40.7713, -73.9434], 12);
+
+document.getElementById('next').onclick = function() {
+  city = (city + 1) % cities.length;
+  map.setView([cities[city][0], cities[city][1]], 12);
+  document.getElementById('city').innerHTML = cities[city][2];
+}
+
+map.on("moveend", function() { document.getElementById('city').innerHTML = ""; }, this);
+
+var hash = L.hash(map);
+
+</script>
+</body>
+</html>
